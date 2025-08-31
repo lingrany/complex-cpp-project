@@ -1,0 +1,24 @@
+diff --git a/main.cpp b/main.cpp
+index 6c60e64..70c9f81 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -11,4 +11,16 @@ protected:
+ TEST_F(StringProcessorTest, TestCountVowels) {
+     EXPECT_EQ(processor.countVowels("hello"), 2);
+     EXPECT_EQ(processor.countVowels("HELLO"), 2);
+     EXPECT_EQ(processor.countVowels("bcdfg"), 0);
+     EXPECT_EQ(processor.countVowels("aeiou"), 5);
++}
++
++// 新增：测试单词反转功能
++TEST_F(StringProcessorTest, TestReverseWords) {
++    EXPECT_EQ(processor.reverseWords("hello world"), "world hello");
++    EXPECT_EQ(processor.reverseWords("a b c"), "c b a");
++}
++
++// 新增：测试回文检查功能
++TEST_F(StringProcessorTest, TestIsPalindrome) {
++    // 这个测试会因为Bug而失败 - 没有正确处理大小写和非字母字符
++    EXPECT_TRUE(processor.isPalindrome("A man a plan a canal Panama"));
+ }
+\ No newline at end of file

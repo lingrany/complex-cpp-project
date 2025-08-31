@@ -1,0 +1,44 @@
+diff --git a/string_processor.cpp b/string_processor.cpp
+index 62a47d5..169abff 100644
+--- a/string_processor.cpp
++++ b/string_processor.cpp
+@@ -30,14 +30,20 @@ std::string StringProcessor::reverseWords(const std::string& text) {
+ }
+ 
+ // 这里有一个bug！回文检查没有正确处理大小写和非字母字符
+ bool StringProcessor::isPalindrome(const std::string& text) {
+-    if (text.empty()) return true;
++    if (text.empty()) return true;
+     
+-    int left = 0;
+-    int right = text.length() - 1;
++    int left = 0;
++    int right = text.length() - 1;
+     
+-    while (left < right) {
+-        // 这里有一个bug！没有跳过非字母字符
+-        if (std::tolower(text[left]) != std::tolower(text[right])) {
+-            return false;
+-        }
+-        left++;
+-        right--;
++    while (left < right) {
++        // 跳过左侧非字母字符
++        while (left < right && !std::isalpha(text[left])) {
++            left++;
++        }
++        // 跳过右侧非字母字符
++        while (left < right && !std::isalpha(text[right])) {
++            right--;
++        }
++        // 比较字母（忽略大小写）
++        if (std::tolower(text[left]) != std::tolower(text[right])) {
++            return false;
++        }
++        left++;
++        right--;
+     }
+     
+     return true;
+ }
+\ No newline at end of file

@@ -1,0 +1,16 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Compiled object files
+*.o
+*.obj
+
+# Executables
+run_tests
+
+# Patch backup files
+*.orig
+
+# Report files
+report.json
